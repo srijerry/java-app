@@ -6,7 +6,7 @@ pipeline{
 
     parameters{
 
-        choice(name: 'action' choices: 'create\ndelete', description: 'choose create/destroy')
+        choice(name: 'action', choices: 'create\ndelete', description: 'choose create/destroy')
     }
 
     stages{
@@ -47,6 +47,19 @@ pipeline{
                 script{
 
                     mavenintegrationtest()
+
+                }
+            }
+        }
+        stage('static code analysis'){
+
+        when { expression  { param.action == 'create' } }
+            
+            steps{
+
+                script{
+
+                    staticcodeanalysis()
 
                 }
             }
