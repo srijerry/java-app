@@ -9,9 +9,9 @@ pipeline{
             steps{
 
                 script{
-
-                    git branch: 'main', url: 'https://github.com/srijerry/java-app.git'
-
+                gitCheckout(
+                    branch: "main"
+                    url: "https://github.com/srijerry/java-app.git"
                 }
             }
         }
