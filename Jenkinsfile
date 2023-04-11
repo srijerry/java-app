@@ -13,4 +13,7 @@ pipeline{
                     git branch: 'main', url: 'https://github.com/srijerry/java-app.git'
 
                 }
-                    
+            }
+        }
+    }
+}            
