@@ -120,6 +120,19 @@ pipeline{
 
                 }
             }
+        }
+        stage('docker push :DockerHub'){
+
+        when { expression  { params.action == 'create' } }
+            
+            steps{
+
+                script{
+
+                    dockerpush("${params.appname}","${params.buildno}","${params.hubuser}")
+
+                }
+            }
         }        
     }
 }            
