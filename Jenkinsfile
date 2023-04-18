@@ -108,5 +108,18 @@ pipeline{
                 }
             }
         }
+        stage('trivy scan '){
+
+        when { expression  { params.action == 'create' } }
+            
+            steps{
+
+                script{
+
+                    trivyscan("${params.appname}","${params.buildno}","${params.hubuser}")
+
+                }
+            }
+        }        
     }
 }            
