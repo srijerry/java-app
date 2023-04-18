@@ -7,6 +7,9 @@ pipeline{
     parameters{
 
         choice(name: 'action', choices: 'create\ndelete', description: 'choose create/destroy')
+        string(name: 'appname', description: "name of the application", defaultValue: 'myapp')
+        string(name: 'buildno', description: "tag of the application", defaultValue: 'v1')
+        string(name: 'hubuser', description: "name of the dockeruser", defaultValue: '')
     }
 
     stages{
@@ -88,6 +91,19 @@ pipeline{
                 script{
 
                     mvnBuild()
+
+                }
+            }
+        }
+        stage('Docker build'){
+
+        when { expression  { params.action == 'create' } }
+            
+            steps{
+
+                script{
+
+                    dockerBuild("${params.appname}","${params.buildno}","${params.hubuser}")
 
                 }
             }
