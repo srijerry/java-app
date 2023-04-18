@@ -9,7 +9,7 @@ pipeline{
         choice(name: 'action', choices: 'create\ndelete', description: 'choose create/destroy')
         string(name: 'appname', description: "name of the application", defaultValue: 'myapp')
         string(name: 'buildno', description: "tag of the application", defaultValue: 'v1')
-        string(name: 'hubuser', description: "name of the dockeruser", defaultValue: '')
+        string(name: 'hubuser', description: "name of the dockeruser", defaultValue: 'sri0123')
     }
 
     stages{
