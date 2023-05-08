@@ -103,7 +103,7 @@ pipeline{
 
                 script{
 
-                    dockerBuild("${params.appname}","${params.buildno}","${params.hubuser}")
+                    dockerBuild("${params.appname}","${BUILD_NUMBER}","${params.hubuser}")
 
                 }
             }
@@ -116,7 +116,7 @@ pipeline{
 
                 script{
 
-                    trivyscan("${params.appname}","${params.buildno}","${params.hubuser}")
+                    trivyscan("${params.appname}","${BUILD_NUMBER}","${params.hubuser}")
 
                 }
             }
@@ -129,7 +129,7 @@ pipeline{
 
                 script{
 
-                    dockerpush("${params.appname}","${params.buildno}","${params.hubuser}")
+                    dockerpush("${params.appname}","${BUILD_NUMBER}","${params.hubuser}")
 
                 }
             }
@@ -142,7 +142,7 @@ pipeline{
 
                 script{
 
-                    dockerimgcleanup("${params.appname}","${params.buildno}","${params.hubuser}")
+                    dockerimgcleanup("${params.appname}","${BUILD_NUMBER}","${params.hubuser}")
 
                 }
             }
