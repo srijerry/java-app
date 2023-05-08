@@ -133,6 +133,19 @@ pipeline{
 
                 }
             }
-        }        
+        }  
+        stage('docker image cleanup'){
+
+        when { expression  { params.action == 'create' } }
+            
+            steps{
+
+                script{
+
+                    dockerimgcleanup("${params.appname}","${params.buildno}","${params.hubuser}")
+
+                }
+            }
+        }      
     }
 }            
