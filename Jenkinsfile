@@ -10,6 +10,9 @@ pipeline{
         string(name: 'appname', description: "name of the application", defaultValue: 'myapp')
         string(name: 'buildno', description: "tag of the application", defaultValue: 'v1')
         string(name: 'hubuser', description: "name of the dockeruser", defaultValue: 'sri0123')
+        string(name: 'awsaccount', description: "AWS account ID", defaultValue: '982210731409')
+        string(name: 'region', description: "AWS account ID", defaultValue: 'us-east-2')
+        
     }
 
     stages{
@@ -134,6 +137,19 @@ pipeline{
                 }
             }
         }  
+        stage('ecr push'){
+
+        when { expression  { params.action == 'create' } }
+            
+            steps{
+
+                script{
+
+                    ECRpush("${JOB_NAME}","${BUILD_NUMBER}","${params.hubuser}","${params.awsaccount}","${params.region}")
+
+                }
+            }
+        }
         stage('docker image cleanup'){
 
         when { expression  { params.action == 'create' } }
